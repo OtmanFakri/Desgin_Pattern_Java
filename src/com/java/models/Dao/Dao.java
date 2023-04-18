@@ -13,12 +13,12 @@ public interface Dao<T> {
     /*
      * Read
      * */
-    T getByID();
+    T getByID(int id);
     List<T> getAll();
     /*
      * Update
      * */
-    boolean update(T item);
+    boolean update(T oldIten,T item);
     /*
      * Delete
      * */

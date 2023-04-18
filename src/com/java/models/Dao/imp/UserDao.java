@@ -8,20 +8,22 @@ import com.java.models.Dao.Dao;
 import java.util.List;
 
 /*
-* Connection to DB
-* */
+ * Connection to DB
+ * */
 
 public class UserDao implements Dao<User> {
 
-    private DB db =new DB();
+    private DB db = new DB();
+
     @Override
     public boolean save(User item) {
+
         return db.getUserTable().add(item);
     }
 
     @Override
     public boolean saveAll(List<User> items) {
-        for(User user : items){
+        for (User user : items) {
             save(user);
             return true;
         }
@@ -29,7 +31,14 @@ public class UserDao implements Dao<User> {
     }
 
     @Override
-    public User getByID() {
+    public User getByID(int id) {
+        //return db.getUserTable().get(id);
+        for (User user :getAll() ){
+           if(user.getUserID() == id){
+               return user;
+           }
+            return null;
+        }
         return null;
     }
 
@@ -39,12 +48,15 @@ public class UserDao implements Dao<User> {
     }
 
     @Override
-    public boolean update(User item) {
-        return false;
+    public boolean update(User olditem,User item) {
+        olditem.setUserName(item.getUserName());
+        olditem.setUserEmail(item.getUserEmail());
+        return true;
     }
 
     @Override
     public boolean delete(int id) {
+        db.getUserTable().remove(getByID(id));
         return false;
     }
 }

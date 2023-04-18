@@ -17,7 +17,7 @@ public class CourseDao implements Dao<Course> {
     }
 
     @Override
-    public Course getByID() {
+    public Course getByID(int id) {
         return null;
     }
 
@@ -27,7 +27,7 @@ public class CourseDao implements Dao<Course> {
     }
 
     @Override
-    public boolean update(Course item) {
+    public boolean update(Course olditem,Course item) {
         return false;
     }
 
